@@ -9,6 +9,7 @@ const navigation = [
   { name: "Sales Process", href: "/process" },
   { name: "Email Templates", href: "/templates" },
   { name: "Team", href: "/team" },
+  { name: "Manifesto", href: "/manifesto" },
 ];
 
 export function Header() {
