@@ -1,0 +1,167 @@
+{
+  "company": {
+    "name": "Yoonet",
+    "tagline": "Sales Onboarding Portal",
+    "description": "Your complete guide to the Yoonet sales process, from initial inquiry to successful onboarding."
+  },
+  "stages": [
+    {
+      "id": 1,
+      "name": "Inquiry",
+      "color": "#3b82f6",
+      "lightColor": "#dbeafe",
+      "description": "Lead enters the system. Client record created in Bubble. Visible to Ben, Em, and Nicole.",
+      "goal": "Capture and register the opportunity",
+      "exitCriteria": "Client exists in Bubble, inquiry acknowledged",
+      "entryPoints": [
+        {
+          "name": "Organic Inquiry",
+          "description": "Inbound lead from website, SEO, content"
+        },
+        {
+          "name": "Referral",
+          "description": "Word of mouth, existing client referral"
+        },
+        {
+          "name": "Outreach",
+          "description": "Proactive contact from Yoonet"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Engaged",
+      "color": "#f59e0b",
+      "lightColor": "#fef3c7",
+      "description": "Prospect is actively engaged. Booking link sent, time scheduled. Form being prepared. Nurturing content flowing.",
+      "goal": "Schedule meeting and prepare bespoke assessment",
+      "exitCriteria": "Meeting booked, assessment form sent",
+      "activities": [
+        "Send booking link with 'Form coming soon' message",
+        "Client books available time slot",
+        "Create bespoke Partner Assessment Form (with Claude)",
+        "Refine and prepare form collaboratively",
+        "Approve and send form to client",
+        "Automated welcome sequence with portal access",
+        "Send 'How We Work' educational content",
+        "Deliver Investment Guide with pricing transparency"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Discovery",
+      "color": "#10b981",
+      "lightColor": "#d1fae5",
+      "description": "Assessment completed, meeting held. Ben understands their needs, challenges, and fit.",
+      "goal": "Qualify opportunity and gather requirements",
+      "exitCriteria": "Meeting complete, clear understanding of needs",
+      "activities": [
+        "Client completes Partner Assessment Form",
+        "Automated email notification to Ben, Em, Nicole",
+        "Discovery meeting with Ben"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Proposal",
+      "color": "#8b5cf6",
+      "lightColor": "#ede9fe",
+      "description": "Em and Nicole create proposal based on Ben's insights. Solution designed, pricing prepared, proposal page built.",
+      "goal": "Present tailored solution with clear next steps",
+      "exitCriteria": "Proposal delivered via yoonet.io/[client]",
+      "activities": [
+        "Ben captures meeting insights and requirements",
+        "Document understanding of client needs",
+        "Develop proposed solutions",
+        "Define timing and implementation next steps",
+        "Create proposal page (yoonet.io/[client] with PIN)"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Onboarding",
+      "color": "#ec4899",
+      "lightColor": "#fce7f3",
+      "description": "Client accesses Bubble with PIN. Recruitment process begins. Transition from sales to delivery.",
+      "goal": "Successful handoff to recruitment",
+      "exitCriteria": "Client active in Bubble, recruitment initiated",
+      "activities": [
+        "Client receives proposal with PIN and Bubble link",
+        "Client accesses Bubble using PIN",
+        "Recruitment process begins"
+      ]
+    }
+  ],
+  "team": [
+    {
+      "id": "ben",
+      "name": "Ben",
+      "role": "Sales",
+      "color": "#10b981",
+      "bgColor": "#ecfdf5",
+      "responsibilities": [
+        "Lead discovery meetings with prospects",
+        "Capture meeting insights and requirements",
+        "Assess client fit and needs",
+        "Communicate client requirements to team"
+      ]
+    },
+    {
+      "id": "nicole",
+      "name": "Nicole",
+      "role": "Sales Admin",
+      "color": "#f59e0b",
+      "bgColor": "#fffbeb",
+      "responsibilities": [
+        "Manage client dashboard in Bubble",
+        "Send booking links to prospects",
+        "Refine and approve assessment forms",
+        "Create proposal pages",
+        "Define timing and next steps"
+      ]
+    },
+    {
+      "id": "em",
+      "name": "Em",
+      "role": "Technical",
+      "color": "#8b5cf6",
+      "bgColor": "#f5f3ff",
+      "responsibilities": [
+        "Create bespoke Partner Assessment Forms",
+        "Work with Claude for form generation",
+        "Document understanding of client needs",
+        "Develop proposed solutions"
+      ]
+    }
+  ],
+  "automatedContent": {
+    "nurturing": [
+      {
+        "id": "welcome",
+        "name": "Welcome + Portal",
+        "trigger": "After inquiry logged",
+        "description": "Introduces portal access to the prospect"
+      },
+      {
+        "id": "how-we-work",
+        "name": "How We Work",
+        "trigger": "Pre-meeting",
+        "description": "Education on partnership model"
+      },
+      {
+        "id": "investment-guide",
+        "name": "Investment Guide",
+        "trigger": "Before assessment",
+        "description": "Pricing transparency and ROI examples"
+      }
+    ],
+    "notifications": [
+      {
+        "id": "assessment-complete",
+        "name": "Assessment Completion",
+        "recipients": ["Ben", "Em", "Nicole"],
+        "description": "Alerts team when client completes form"
+      }
+    ]
+  }
+}

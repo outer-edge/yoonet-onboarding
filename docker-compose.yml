@@ -1,0 +1,39 @@
+services:
+  yoonet-onboarding:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: yoonet-sales-onboarding
+    ports:
+      - "3000:3000"
+    volumes:
+      # Mount the data directory for SQLite database persistence
+      # The database file (yoonet.db) will be stored here
+      - yoonet-data:/app/data
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=file:/app/data/yoonet.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+volumes:
+  yoonet-data:
+    driver: local
+
+# To use:
+# 1. Run: docker-compose up -d
+# 2. The database will be automatically created and seeded on first run
+# 3. All changes made in the UI are persisted to the SQLite database
+# 4. Data persists across container restarts via the yoonet-data volume
+#
+# To reset the database:
+# docker-compose down -v
+# docker-compose up -d
+#
+# To backup the database:
+# docker cp yoonet-sales-onboarding:/app/data/yoonet.db ./backup.db

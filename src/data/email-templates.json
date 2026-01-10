@@ -1,0 +1,102 @@
+{
+  "templates": [
+    {
+      "id": "welcome-portal",
+      "name": "Welcome + Portal Access",
+      "stage": "Engaged",
+      "type": "automated",
+      "subject": "Welcome to Yoonet - Your Portal Access",
+      "body": "Hi {{clientName}},\n\nThank you for your interest in Yoonet! We're excited to start this journey with you.\n\nYour personalized portal is now ready. You can access it anytime to:\n- Track the progress of your engagement\n- Access important documents\n- Communicate with our team\n\n**Portal Access:**\nURL: {{portalUrl}}\n\nNext, you'll receive our \"How We Work\" guide to help you understand our partnership model.\n\nIf you have any questions in the meantime, don't hesitate to reach out.\n\nBest regards,\nThe Yoonet Team"
+    },
+    {
+      "id": "how-we-work",
+      "name": "How We Work Guide",
+      "stage": "Engaged",
+      "type": "automated",
+      "subject": "How Yoonet Works - Our Partnership Model",
+      "body": "Hi {{clientName}},\n\nBefore our upcoming meeting, we wanted to share how we approach partnerships at Yoonet.\n\n**Our Approach:**\n\n1. **Discovery** - We take the time to truly understand your business, challenges, and goals.\n\n2. **Bespoke Solutions** - Every proposal is tailored specifically to your needs. No cookie-cutter approaches here.\n\n3. **Transparent Process** - You'll have visibility into every step of our engagement through your portal.\n\n4. **Ongoing Partnership** - We're not just a vendor; we become an extension of your team.\n\n**What to Expect:**\n- A personalized assessment form (coming soon)\n- A discovery call with Ben to discuss your needs\n- A tailored proposal with clear pricing and next steps\n\nWe look forward to learning more about your business!\n\nBest regards,\nThe Yoonet Team"
+    },
+    {
+      "id": "investment-guide",
+      "name": "Investment Guide",
+      "stage": "Engaged",
+      "type": "automated",
+      "subject": "Yoonet Investment Guide - Transparent Pricing",
+      "body": "Hi {{clientName}},\n\nAt Yoonet, we believe in complete transparency when it comes to pricing. Here's what you need to know about investing in a partnership with us.\n\n**Our Pricing Philosophy:**\n- Clear, upfront pricing with no hidden fees\n- Flexible engagement models to suit your needs\n- ROI-focused approach - we measure our success by your results\n\n**What Influences Your Investment:**\n1. Scope of recruitment needs\n2. Timeline and urgency\n3. Specialization requirements\n4. Ongoing support level\n\n**ROI Examples:**\n- Average time-to-hire reduction: 40%\n- Quality of hire improvement: 35%\n- Cost-per-hire optimization: 25%\n\nYour personalized pricing will be included in your proposal after our discovery call.\n\nQuestions? We're happy to discuss.\n\nBest regards,\nThe Yoonet Team"
+    },
+    {
+      "id": "booking-link",
+      "name": "Booking Link Email",
+      "stage": "Engaged",
+      "type": "manual",
+      "subject": "Let's Schedule Your Discovery Call - Yoonet",
+      "body": "Hi {{clientName}},\n\nThank you for reaching out to Yoonet! We're looking forward to learning more about your business and how we can help.\n\n**Book Your Discovery Call:**\n{{bookingLink}}\n\nThis 30-minute call will be with Ben, our Sales lead. He'll walk you through our process and discuss your specific needs.\n\n**Before the call:**\n- You'll receive a personalized assessment form (coming soon)\n- Please complete it so Ben can prepare for a productive conversation\n\nIf you have any questions before our call, feel free to reply to this email.\n\nLooking forward to speaking with you!\n\nBest regards,\nNicole\nYoonet Sales Team"
+    },
+    {
+      "id": "assessment-form",
+      "name": "Assessment Form Email",
+      "stage": "Engaged",
+      "type": "manual",
+      "subject": "Your Personalized Assessment - Yoonet",
+      "body": "Hi {{clientName}},\n\nAs promised, here's your personalized Partner Assessment Form. This helps us understand your business better and prepare for a productive discovery call.\n\n**Complete Your Assessment:**\n{{assessmentLink}}\n\n**What we're looking to understand:**\n- Your current recruitment challenges\n- Your ideal candidate profiles\n- Your timeline and goals\n- Your team structure and hiring needs\n\n**Time to complete:** Approximately 10-15 minutes\n\nOnce submitted, Ben will review your responses and be fully prepared for your discovery call.\n\nThank you for taking the time!\n\nBest regards,\nNicole\nYoonet Sales Team"
+    },
+    {
+      "id": "assessment-notification",
+      "name": "Assessment Completion Notification",
+      "stage": "Discovery",
+      "type": "automated",
+      "subject": "[Internal] Assessment Completed - {{clientName}}",
+      "body": "Team,\n\n{{clientName}} has completed their Partner Assessment Form.\n\n**Client:** {{clientName}}\n**Company:** {{companyName}}\n**Submitted:** {{submissionDate}}\n\n**Quick Summary:**\n{{assessmentSummary}}\n\n**View Full Assessment:**\n{{assessmentLink}}\n\n**Next Steps:**\n- Ben: Review before discovery call\n- Em: Begin thinking about potential solutions\n- Nicole: Confirm meeting is scheduled\n\nDiscovery call scheduled for: {{meetingDate}}\n\n- Automated Notification"
+    },
+    {
+      "id": "proposal-delivery",
+      "name": "Proposal Delivery",
+      "stage": "Onboarding",
+      "type": "manual",
+      "subject": "Your Yoonet Proposal is Ready",
+      "body": "Hi {{clientName}},\n\nThank you for the excellent conversation with Ben. Based on our discovery call and your assessment, we've prepared a tailored proposal for {{companyName}}.\n\n**Access Your Proposal:**\nURL: yoonet.io/{{clientSlug}}\nPIN: {{accessPin}}\n\n**What's Included:**\n1. Our understanding of your needs\n2. Proposed solutions and approach\n3. Timeline and implementation plan\n4. Investment details\n5. Next steps to get started\n\n**Your Bubble Portal:**\nOnce you're ready to proceed, you'll use the same PIN to access your client portal in Bubble, where you can:\n- Track recruitment progress\n- Review candidates\n- Communicate with your dedicated team\n\nWe're excited about the possibility of partnering with {{companyName}}. Please don't hesitate to reach out with any questions.\n\nBest regards,\nThe Yoonet Team"
+    }
+  ],
+  "variables": [
+    {
+      "name": "clientName",
+      "description": "The client's first name or full name"
+    },
+    {
+      "name": "companyName",
+      "description": "The client's company name"
+    },
+    {
+      "name": "portalUrl",
+      "description": "URL to the client's portal"
+    },
+    {
+      "name": "bookingLink",
+      "description": "Calendar booking link for discovery call"
+    },
+    {
+      "name": "assessmentLink",
+      "description": "Link to the assessment form"
+    },
+    {
+      "name": "clientSlug",
+      "description": "URL-friendly client identifier"
+    },
+    {
+      "name": "accessPin",
+      "description": "PIN for proposal/portal access"
+    },
+    {
+      "name": "meetingDate",
+      "description": "Scheduled meeting date and time"
+    },
+    {
+      "name": "submissionDate",
+      "description": "Date the assessment was submitted"
+    },
+    {
+      "name": "assessmentSummary",
+      "description": "Brief summary of assessment responses"
+    }
+  ]
+}
