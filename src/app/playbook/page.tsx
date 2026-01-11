@@ -10,16 +10,16 @@ import {
 } from "@/components/ui/accordion";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function ManifestoPage() {
+export default function PlaybookPage() {
   return (
     <div className="container py-12">
       {/* Hero Section */}
       <div className="mb-16 text-center max-w-4xl mx-auto">
         <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-xs font-medium tracking-wider uppercase">
-          Complete Sales Process Specification
+          Sales Playbook
         </Badge>
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
-          Yoonet Sales Process
+          The Complete Playbook
         </h1>
         <p className="text-xl text-muted-foreground leading-relaxed">
           From initial inquiry through to client onboarding — a systematic, repeatable sales engine
