@@ -8,6 +8,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function ManifestoPage() {
   return (
@@ -15,161 +16,711 @@ export default function ManifestoPage() {
       {/* Hero Section */}
       <div className="mb-16 text-center max-w-4xl mx-auto">
         <Badge variant="secondary" className="mb-4 px-4 py-1.5 text-xs font-medium tracking-wider uppercase">
-          Technical Specification
+          Complete Sales Process Specification
         </Badge>
         <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text">
-          Claude API Integration
+          Yoonet Sales Process
         </h1>
         <p className="text-xl text-muted-foreground leading-relaxed">
-          Automating proposal HTML generation through intelligent AI integration with Bubble.
-          Streamlined workflows, consistent quality, reduced manual effort.
+          From initial inquiry through to client onboarding — a systematic, repeatable sales engine
+          that delivers a premium client experience while reducing founder dependency.
         </p>
       </div>
 
-      {/* Objective Card */}
+      {/* Executive Summary */}
       <div className="mb-16 max-w-4xl mx-auto">
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 p-8 md:p-12">
           <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
           <div className="relative">
-            <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Objective</h2>
-            <p className="text-lg md:text-xl text-foreground/90 leading-relaxed">
-              When Em and Nicole input meeting insights and client requirements into Bubble,
-              Claude API generates professionally formatted HTML that can be published as a
-              proposal page on yoonet.io.
+            <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Executive Summary</h2>
+            <p className="text-lg md:text-xl text-foreground/90 leading-relaxed mb-6">
+              This document provides the full specification for Yoonet&apos;s sales process, covering
+              the five stages of the pipeline, roles involved, automations, content requirements,
+              technical integrations, and team workflows.
             </p>
+            <div className="grid sm:grid-cols-2 gap-4 text-sm">
+              <div className="rounded-lg bg-background/50 p-4">
+                <p className="font-semibold mb-1">Scope</p>
+                <p className="text-muted-foreground">Yoonet brand only (Allied Flow separate)</p>
+              </div>
+              <div className="rounded-lg bg-background/50 p-4">
+                <p className="font-semibold mb-1">Tech Stack</p>
+                <p className="text-muted-foreground">Bubble, SendGrid, Claude API, Calendly, yoonet.io</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* The Flow - Visual Timeline */}
+      {/* The Five Stages */}
       <div className="mb-16">
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">How It Works</h2>
-          <p className="text-muted-foreground">The complete proposal generation workflow</p>
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">The Five Stages</h2>
+          <p className="text-muted-foreground">Complete sales pipeline from inquiry to onboarding</p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <div className="relative">
-            {/* Vertical line */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-primary/50 via-primary/30 to-primary/10" />
-
+        <div className="max-w-5xl mx-auto">
+          {/* Visual Pipeline */}
+          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
             {[
-              { step: 1, title: "Ben completes meeting", desc: "Captures insights and client requirements" },
-              { step: 2, title: "Em enters Understanding of Needs", desc: "Documents client situation in Bubble form" },
-              { step: 3, title: "Em enters Proposed Solutions", desc: "Outlines recommended approach" },
-              { step: 4, title: "Nicole enters Timing & Next Steps", desc: "Defines timeline and actions" },
-              { step: 5, title: "Generate Proposal triggered", desc: "Nicole initiates API call" },
-              { step: 6, title: "Bubble sends data to Claude", desc: "API request with all inputs" },
-              { step: 7, title: "Claude returns formatted HTML", desc: "Professional proposal content generated" },
-              { step: 8, title: "HTML stored and published", desc: "Pushed to yoonet.io" },
-              { step: 9, title: "Ben reviews proposal", desc: "Quality check before sending" },
-              { step: 10, title: "Client receives proposal", desc: "Link + PIN sent by Nicole" },
-            ].map((item, i) => (
-              <div key={i} className="relative pl-16 pb-8 last:pb-0">
-                <div className="absolute left-0 w-12 h-12 rounded-full bg-background border-2 border-primary/30 flex items-center justify-center">
-                  <span className="text-sm font-bold text-primary">{item.step}</span>
+              { num: 1, name: "Inquiry", color: "bg-blue-500" },
+              { num: 2, name: "Engaged", color: "bg-indigo-500" },
+              { num: 3, name: "Discovery", color: "bg-violet-500" },
+              { num: 4, name: "Proposal", color: "bg-purple-500" },
+              { num: 5, name: "Onboarding", color: "bg-pink-500" },
+            ].map((stage, i) => (
+              <div key={i} className="flex items-center">
+                <div className={`${stage.color} text-white rounded-lg px-4 py-3 text-center min-w-[100px]`}>
+                  <div className="text-xs opacity-80">Stage {stage.num}</div>
+                  <div className="font-semibold">{stage.name}</div>
                 </div>
-                <div className="pt-2">
-                  <h3 className="font-semibold text-foreground">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground mt-0.5">{item.desc}</p>
-                </div>
+                {i < 4 && <div className="hidden md:block text-muted-foreground mx-2">→</div>}
               </div>
             ))}
           </div>
+
+          {/* Stage Details Table */}
+          <div className="overflow-x-auto rounded-lg border">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="text-left py-3 px-4 font-semibold">Stage</th>
+                  <th className="text-left py-3 px-4 font-semibold">Name</th>
+                  <th className="text-left py-3 px-4 font-semibold">Trigger</th>
+                  <th className="text-left py-3 px-4 font-semibold">Exit Criteria</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                {[
+                  ["1", "Inquiry", "Lead enters system", "Client exists in Bubble, inquiry acknowledged"],
+                  ["2", "Engaged", "Dashboard notification", "Meeting booked, assessment form sent"],
+                  ["3", "Discovery", "Assessment submitted", "Meeting complete, needs understood"],
+                  ["4", "Proposal", "Meeting complete", "Proposal delivered via yoonet.io/[client]"],
+                  ["5", "Onboarding", "Proposal accepted", "Client active, recruitment initiated"],
+                ].map(([stage, name, trigger, exit], i) => (
+                  <tr key={i} className="hover:bg-muted/30 transition-colors">
+                    <td className="py-2.5 px-4 font-mono text-primary font-bold">{stage}</td>
+                    <td className="py-2.5 px-4 font-semibold">{name}</td>
+                    <td className="py-2.5 px-4 text-muted-foreground">{trigger}</td>
+                    <td className="py-2.5 px-4 text-muted-foreground">{exit}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
-      {/* Bubble Setup */}
+      {/* The Participants */}
       <Card className="mb-10 overflow-hidden">
         <CardHeader className="bg-muted/30 border-b">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
             </div>
-            <CardTitle>Bubble Setup</CardTitle>
+            <CardTitle>The Participants</CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="pt-8 space-y-8">
-          <div>
-            <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded bg-primary/10 text-primary text-xs flex items-center justify-center font-bold">1</span>
-              Data Structure — Proposal Type
-            </h3>
-            <div className="overflow-x-auto rounded-lg border">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="bg-muted/50">
-                    <th className="text-left py-3 px-4 font-semibold">Field</th>
-                    <th className="text-left py-3 px-4 font-semibold">Type</th>
-                    <th className="text-left py-3 px-4 font-semibold">Description</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y">
-                  {[
-                    ["client", "Client", "Link to client record"],
-                    ["status", "Text", "Draft / Pending Review / Approved / Sent"],
-                    ["created_by", "User", "Who initiated the proposal"],
-                    ["created_date", "Date", "When proposal was created"],
-                    ["understanding_of_needs", "Text", "Em's input - client needs summary"],
-                    ["proposed_solutions", "Text", "Em's input - recommended solutions"],
-                    ["timing_next_steps", "Text", "Nicole's input - timeline and actions"],
-                    ["generated_html", "Text", "Claude-generated HTML output"],
-                    ["proposal_url", "Text", "yoonet.io/[client-slug]"],
-                    ["pin", "Text", "Access PIN for client"],
-                    ["reviewed_by", "User", "Ben's review record"],
-                    ["reviewed_date", "Date", "When Ben approved"],
-                    ["sent_date", "Date", "When sent to client"],
-                  ].map(([field, type, desc], i) => (
-                    <tr key={i} className="hover:bg-muted/30 transition-colors">
-                      <td className="py-2.5 px-4 font-mono text-xs text-primary">{field}</td>
-                      <td className="py-2.5 px-4 text-muted-foreground">{type}</td>
-                      <td className="py-2.5 px-4 text-muted-foreground">{desc}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+        <CardContent className="pt-8">
+          <div className="overflow-x-auto rounded-lg border mb-8">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-muted/50">
+                  <th className="text-left py-3 px-4 font-semibold">Lane</th>
+                  <th className="text-left py-3 px-4 font-semibold">Role</th>
+                  <th className="text-left py-3 px-4 font-semibold">Responsibilities</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                <tr className="hover:bg-muted/30 transition-colors">
+                  <td className="py-2.5 px-4 font-semibold">Client</td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Prospect/Customer</td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Books meetings, completes forms, receives content, makes decisions</td>
+                </tr>
+                <tr className="hover:bg-muted/30 transition-colors">
+                  <td className="py-2.5 px-4 font-semibold">Automated</td>
+                  <td className="py-2.5 px-4 text-muted-foreground">System (Bubble + SendGrid)</td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Nurturing content, notifications, reminders, portal access</td>
+                </tr>
+                <tr className="hover:bg-muted/30 transition-colors">
+                  <td className="py-2.5 px-4">
+                    <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100">Em</Badge>
+                  </td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Technical</td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Business review, form HTML creation (with Claude), proposal content</td>
+                </tr>
+                <tr className="hover:bg-muted/30 transition-colors">
+                  <td className="py-2.5 px-4">
+                    <Badge className="bg-pink-100 text-pink-700 hover:bg-pink-100">Nicole</Badge>
+                  </td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Sales Admin</td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Client communication, booking links, form refinement + sending, proposal delivery</td>
+                </tr>
+                <tr className="hover:bg-muted/30 transition-colors">
+                  <td className="py-2.5 px-4">
+                    <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100">Ben</Badge>
+                  </td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Sales</td>
+                  <td className="py-2.5 px-4 text-muted-foreground">Initial meetings, proposal review + approval, relationship ownership</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
-          <div>
-            <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-              <span className="w-6 h-6 rounded bg-primary/10 text-primary text-xs flex items-center justify-center font-bold">2</span>
-              Workflow Configuration
-            </h3>
-            <div className="grid md:grid-cols-2 gap-4">
-              <div className="rounded-lg bg-muted/30 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Trigger</p>
-                <p className="font-medium">Button click &quot;Generate Proposal&quot;</p>
-              </div>
-              <div className="rounded-lg bg-muted/30 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Conditions</p>
-                <p className="font-medium">All three input fields are not empty</p>
-              </div>
-            </div>
-            <div className="mt-4 rounded-lg border p-4">
-              <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Actions Sequence</p>
-              <ol className="space-y-2">
-                {[
-                  "Set proposal status → \"Generating...\"",
-                  "API Connector call → Claude API",
-                  "Update proposal record → Store generated_html",
-                  "Set proposal status → \"Pending Review\"",
-                  "Send notification → Ben (Slack/email)",
-                ].map((action, i) => (
-                  <li key={i} className="flex items-center gap-3 text-sm">
-                    <span className="w-5 h-5 rounded-full bg-primary/10 text-primary text-xs flex items-center justify-center flex-shrink-0">{i + 1}</span>
-                    <span className="text-muted-foreground">{action}</span>
-                  </li>
-                ))}
-              </ol>
-            </div>
+          {/* Handoff Flow */}
+          <div className="rounded-xl bg-muted/30 p-6">
+            <h3 className="font-semibold mb-4">Handoff Points</h3>
+            <pre className="text-xs font-mono overflow-x-auto whitespace-pre">
+{`Client inquiry → Dashboard (all see)
+                     ↓
+         ┌──────────┴──────────┐
+         ↓                     ↓
+    Nicole: Booking        Em: Form creation
+         ↓                     ↓
+         └──────────┬──────────┘
+                    ↓
+              Nicole: Send form
+                    ↓
+              Client: Complete
+                    ↓
+              Ben: Meeting
+                    ↓
+         ┌──────────┴──────────┐
+         ↓                     ↓
+    Em: Understanding     Nicole: Timing
+    Em: Solutions              ↓
+         ↓                     ↓
+         └──────────┬──────────┘
+                    ↓
+              Nicole: Create proposal
+                    ↓
+              Ben: Review + approve
+                    ↓
+              Nicole: Send to client`}
+            </pre>
           </div>
         </CardContent>
       </Card>
 
-      {/* Claude API Setup */}
+      {/* Stage Details Tabs */}
+      <Card className="mb-10 overflow-hidden">
+        <CardHeader className="bg-muted/30 border-b">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <CardTitle>Stage Details</CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-6">
+          <Tabs defaultValue="stage1" className="w-full">
+            <TabsList className="grid w-full grid-cols-5 mb-6">
+              <TabsTrigger value="stage1">1. Inquiry</TabsTrigger>
+              <TabsTrigger value="stage2">2. Engaged</TabsTrigger>
+              <TabsTrigger value="stage3">3. Discovery</TabsTrigger>
+              <TabsTrigger value="stage4">4. Proposal</TabsTrigger>
+              <TabsTrigger value="stage5">5. Onboarding</TabsTrigger>
+            </TabsList>
+
+            {/* Stage 1: Inquiry */}
+            <TabsContent value="stage1" className="space-y-6">
+              <div className="rounded-xl bg-blue-50 dark:bg-blue-950/30 p-6 border border-blue-200 dark:border-blue-900">
+                <h3 className="font-semibold text-lg mb-2">Stage 1: Inquiry</h3>
+                <p className="text-muted-foreground">
+                  The moment a lead enters the system. Could be organic (website, SEO), referral, or outreach.
+                  The goal is to capture the opportunity, create the client record, and trigger parallel workstreams.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">Entry Points</h4>
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {[
+                    { source: "Organic", desc: "Website enquiry, contact form, SEO", method: "Bubble form → client record" },
+                    { source: "Referral", desc: "Existing client recommendation", method: "Manual entry or forwarded email" },
+                    { source: "Outreach", desc: "Proactive contact by Yoonet", method: "Manual entry after response" },
+                  ].map((entry, i) => (
+                    <div key={i} className="rounded-lg border p-4">
+                      <p className="font-semibold mb-1">{entry.source}</p>
+                      <p className="text-sm text-muted-foreground mb-2">{entry.desc}</p>
+                      <p className="text-xs text-primary">{entry.method}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">What Happens</h4>
+                <div className="relative pl-8">
+                  <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-blue-300 to-blue-100" />
+                  {[
+                    { step: "Inquiry received", auto: false },
+                    { step: "Client created in Bubble", auto: true },
+                    { step: "Dashboard notification to Ben, Em, Nicole", auto: true },
+                    { step: "Welcome email sent to client", auto: true },
+                    { step: "Portal access granted", auto: true },
+                    { step: "Move to Stage 2: Engaged", auto: false },
+                  ].map((item, i) => (
+                    <div key={i} className="relative pb-4 last:pb-0">
+                      <div className="absolute left-[-22px] w-4 h-4 rounded-full bg-background border-2 border-blue-500" />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">{item.step}</span>
+                        {item.auto && <Badge variant="outline" className="text-xs">AUTO</Badge>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">Automations</h4>
+                <div className="overflow-x-auto rounded-lg border">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-muted/50">
+                        <th className="text-left py-2 px-3 font-semibold">Automation</th>
+                        <th className="text-left py-2 px-3 font-semibold">Trigger</th>
+                        <th className="text-left py-2 px-3 font-semibold">Timing</th>
+                        <th className="text-left py-2 px-3 font-semibold">Platform</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      {[
+                        ["Client record creation", "Inquiry form submitted", "Immediate", "Bubble"],
+                        ["Dashboard notification", "Client created", "Immediate", "Bubble → Slack/Email"],
+                        ["Welcome email", "Client created", "Immediate", "Bubble → SendGrid"],
+                        ["Portal access email", "Client created", "5 min after welcome", "Bubble → SendGrid"],
+                      ].map(([auto, trigger, timing, platform], i) => (
+                        <tr key={i} className="hover:bg-muted/30">
+                          <td className="py-2 px-3">{auto}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{trigger}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{timing}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{platform}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="welcome-email" className="border rounded-lg px-4">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <span>Email Template: Welcome</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6">
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Subject:</strong> Welcome to Yoonet — Let&apos;s get started</p>
+                      <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
+{`Hi [Contact First Name],
+
+Thank you for reaching out to Yoonet. We're excited to learn more about [Business Name] and explore how we can support your growth.
+
+Here's what happens next:
+
+1. You'll receive a link to book a time to chat with Ben, our founder
+2. Before your meeting, we'll send you a short Partner Assessment Form
+3. We'll use your responses to make sure our conversation is focused and valuable
+
+In the meantime, you'll have access to our Client Portal where you can learn more about how we work and what makes Yoonet different.
+
+If you have any questions before we speak, simply reply to this email.
+
+Looking forward to connecting.
+
+Warmest regards,
+The Yoonet Team`}
+                      </pre>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+
+            {/* Stage 2: Engaged */}
+            <TabsContent value="stage2" className="space-y-6">
+              <div className="rounded-xl bg-indigo-50 dark:bg-indigo-950/30 p-6 border border-indigo-200 dark:border-indigo-900">
+                <h3 className="font-semibold text-lg mb-2">Stage 2: Engaged</h3>
+                <p className="text-muted-foreground">
+                  The prospect is now actively engaged. Two parallel tracks begin: (1) booking a meeting with Ben,
+                  and (2) preparing a bespoke Partner Assessment Form. Automated nurturing runs alongside.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="rounded-xl border p-6">
+                  <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded bg-indigo-100 text-indigo-700 text-xs flex items-center justify-center font-bold">1</span>
+                    Track 1: Booking
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-4">Nicole&apos;s Actions:</p>
+                  <ul className="text-sm space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2" />
+                      Send booking link email within 1 hour of inquiry
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2" />
+                      Include message that assessment form is coming
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2" />
+                      Monitor for booking confirmation
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="rounded-xl border p-6">
+                  <h4 className="font-semibold mb-3 flex items-center gap-2">
+                    <span className="w-6 h-6 rounded bg-indigo-100 text-indigo-700 text-xs flex items-center justify-center font-bold">2</span>
+                    Track 2: Form Creation
+                  </h4>
+                  <p className="text-sm text-muted-foreground mb-4">Target turnaround: &lt; 1 business day</p>
+                  <ul className="text-sm space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2" />
+                      Em reviews business (legitimacy + red flags)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2" />
+                      Em creates form HTML (with Claude)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-indigo-500 mt-2" />
+                      Nicole reviews, refines, and sends
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-amber-50 dark:bg-amber-950/30 p-6 border border-amber-200 dark:border-amber-900">
+                <h4 className="font-semibold mb-3">What Em Looks For (Business Review)</h4>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm font-medium mb-2">Legitimacy check:</p>
+                    <p className="text-sm text-muted-foreground">Is this a real, established business?</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium mb-2">Red flags to watch for:</p>
+                    <ul className="text-sm text-muted-foreground">
+                      <li>• Corporates</li>
+                      <li>• Financial advisers</li>
+                      <li>• Lawyers / Accountants</li>
+                      <li>• Any business on compliance &quot;no-touch&quot; list</li>
+                    </ul>
+                  </div>
+                </div>
+                <p className="text-sm mt-4 text-amber-700 dark:text-amber-400">
+                  If red flags present, flag to Ben before proceeding.
+                </p>
+              </div>
+
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="booking-email" className="border rounded-lg mb-3 px-4">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <span>Email Template: Booking Link</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6">
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Subject:</strong> Let&apos;s find a time to talk — [Business Name] + Yoonet</p>
+                      <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
+{`Hi [Contact First Name],
+
+Thanks for your interest in Yoonet. I'd love to learn more about [Business Name] and explore how we might be able to help.
+
+Book a time that suits you here: [Calendly Link]
+
+Before we meet, we'll send you a short Partner Assessment Form. This helps us understand your specific situation so our conversation is as useful as possible for you.
+
+In the meantime, feel free to explore your Client Portal: [Portal Link]
+
+Looking forward to speaking with you.
+
+Warmest regards,
+Nicole
+Yoonet`}
+                      </pre>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="form-email" className="border rounded-lg px-4">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <span>Email Template: Form Delivery</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6">
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Subject:</strong> Your Partner Assessment Form — [Business Name]</p>
+                      <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
+{`Hi [Contact First Name],
+
+As promised, here's your Partner Assessment Form. This should take about 10 minutes to complete.
+
+Complete your form here: [Form Link]
+
+Your responses help us understand your specific situation so Ben can make your upcoming conversation as valuable as possible.
+
+Please complete this before your meeting on [Meeting Date/Time].
+
+If you have any questions, just reply to this email.
+
+Warmest regards,
+Nicole
+Yoonet`}
+                      </pre>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+
+            {/* Stage 3: Discovery */}
+            <TabsContent value="stage3" className="space-y-6">
+              <div className="rounded-xl bg-violet-50 dark:bg-violet-950/30 p-6 border border-violet-200 dark:border-violet-900">
+                <h3 className="font-semibold text-lg mb-2">Stage 3: Discovery</h3>
+                <p className="text-muted-foreground">
+                  The client has completed their assessment and the meeting with Ben occurs. This is where we truly
+                  understand their needs and assess mutual fit. The completed assessment informs the conversation,
+                  and Ben&apos;s insights drive the proposal.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">Meeting Structure (30-35 min)</h4>
+                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  {[
+                    { title: "Opening", time: "5 min", items: ["Thank for assessment", "Confirm situation", "Set agenda"] },
+                    { title: "Understanding", time: "15 min", items: ["Current challenges", "What they've tried", "Success criteria"] },
+                    { title: "Exploration", time: "10 min", items: ["How Yoonet helps", "Answer questions", "Address concerns"] },
+                    { title: "Next Steps", time: "5 min", items: ["Proposal process", "Timeline", "Immediate questions"] },
+                  ].map((section, i) => (
+                    <div key={i} className="rounded-lg border p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <p className="font-semibold">{section.title}</p>
+                        <Badge variant="outline" className="text-xs">{section.time}</Badge>
+                      </div>
+                      <ul className="text-xs text-muted-foreground space-y-1">
+                        {section.items.map((item, j) => (
+                          <li key={j}>• {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">Meeting Insights Capture</h4>
+                <p className="text-sm text-muted-foreground mb-4">What Ben needs to capture after each meeting:</p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {[
+                    { field: "Current situation", desc: "What's happening in their business now" },
+                    { field: "Pain points", desc: "Specific challenges and frustrations" },
+                    { field: "Success criteria", desc: "Their goals and desired outcomes" },
+                    { field: "Budget indication", desc: "Any budget discussed or implied" },
+                    { field: "Timeline", desc: "When they want to start" },
+                    { field: "Specific requirements", desc: "Particular needs or constraints" },
+                    { field: "Fit assessment", desc: "Good fit / Needs work / Not right" },
+                    { field: "Recommended approach", desc: "What we should propose" },
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-start gap-3 rounded-lg border p-3">
+                      <span className="font-mono text-xs bg-primary/10 text-primary px-2 py-1 rounded">{item.field}</span>
+                      <span className="text-sm text-muted-foreground">{item.desc}</span>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground mt-4">
+                  <strong>Capture method:</strong> Voice note to Em/Nicole or structured form in Bubble
+                </p>
+              </div>
+            </TabsContent>
+
+            {/* Stage 4: Proposal */}
+            <TabsContent value="stage4" className="space-y-6">
+              <div className="rounded-xl bg-purple-50 dark:bg-purple-950/30 p-6 border border-purple-200 dark:border-purple-900">
+                <h3 className="font-semibold text-lg mb-2">Stage 4: Proposal</h3>
+                <p className="text-muted-foreground">
+                  Based on Ben&apos;s meeting insights, Em and Nicole create a tailored proposal. Claude API generates
+                  the HTML, Ben reviews and approves, then Nicole delivers to the client via a personalised yoonet.io
+                  page with PIN access.
+                </p>
+                <p className="text-sm mt-2 text-purple-700 dark:text-purple-400">
+                  <strong>Target turnaround:</strong> 48 hours from meeting to proposal delivered
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">The Proposal Creation Loop</h4>
+                <div className="relative pl-8">
+                  <div className="absolute left-3 top-0 bottom-0 w-px bg-gradient-to-b from-purple-500 via-purple-300 to-purple-100" />
+                  {[
+                    { step: "Ben's meeting insights received", who: "" },
+                    { step: "Em drafts Understanding of Needs", who: "Em" },
+                    { step: "Em drafts Proposed Solutions", who: "Em" },
+                    { step: "Nicole adds Timing & Next Steps", who: "Nicole" },
+                    { step: "Nicole triggers \"Generate Proposal\"", who: "Nicole" },
+                    { step: "Claude API generates HTML", who: "AUTO" },
+                    { step: "Nicole publishes to yoonet.io/proposals/[client]", who: "Nicole" },
+                    { step: "Ben reviews proposal page", who: "Ben" },
+                    { step: "Nicole sends proposal with PIN", who: "Nicole" },
+                  ].map((item, i) => (
+                    <div key={i} className="relative pb-4 last:pb-0">
+                      <div className="absolute left-[-22px] w-4 h-4 rounded-full bg-background border-2 border-purple-500" />
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm">{item.step}</span>
+                        {item.who && (
+                          <Badge
+                            className={
+                              item.who === "Em" ? "bg-amber-100 text-amber-700 hover:bg-amber-100" :
+                              item.who === "Nicole" ? "bg-pink-100 text-pink-700 hover:bg-pink-100" :
+                              item.who === "Ben" ? "bg-blue-100 text-blue-700 hover:bg-blue-100" :
+                              "bg-muted"
+                            }
+                          >
+                            {item.who}
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="proposal-email" className="border rounded-lg mb-3 px-4">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <span>Email Template: Proposal Delivery</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6">
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Subject:</strong> Your Partnership Proposal — [Business Name] + Yoonet</p>
+                      <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
+{`Hi [Contact First Name],
+
+Thank you for taking the time to meet with us. Based on our conversation, we've put together a proposal for how Yoonet can support [Business Name].
+
+View your proposal here: [Proposal URL]
+
+Your access PIN: [PIN]
+
+This proposal outlines our understanding of your needs, our recommended solution, and the next steps to get started.
+
+If you have any questions or would like to discuss anything in the proposal, simply reply to this email or book a follow-up call: [Calendly Link]
+
+We're excited about the possibility of working together.
+
+Warmest regards,
+Ben Carter
+Founder, Yoonet`}
+                      </pre>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+
+                <AccordionItem value="followup-email" className="border rounded-lg px-4">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <span>Email Template: Follow-up (48 hours)</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6">
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Subject:</strong> Following up on your proposal — [Business Name]</p>
+                      <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
+{`Hi [Contact First Name],
+
+I wanted to check in and see if you've had a chance to review your proposal.
+
+View your proposal: [Proposal URL]
+PIN: [PIN]
+
+If you have any questions or would like to talk through anything, I'm happy to jump on a quick call: [Calendly Link]
+
+No pressure at all — just want to make sure you have everything you need to make the right decision for [Business Name].
+
+Warmest regards,
+Ben`}
+                      </pre>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+
+            {/* Stage 5: Onboarding */}
+            <TabsContent value="stage5" className="space-y-6">
+              <div className="rounded-xl bg-pink-50 dark:bg-pink-950/30 p-6 border border-pink-200 dark:border-pink-900">
+                <h3 className="font-semibold text-lg mb-2">Stage 5: Onboarding</h3>
+                <p className="text-muted-foreground">
+                  The client has accepted the proposal and is ready to begin. They access the Bubble onboarding
+                  portal using their PIN, complete the setup requirements, and the recruitment process begins.
+                  This stage transitions the relationship from sales to delivery.
+                </p>
+              </div>
+
+              <div>
+                <h4 className="font-semibold mb-3">Bubble Onboarding Portal — What Client Completes</h4>
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+                  {[
+                    "Confirm business details",
+                    "Primary contact information",
+                    "Communication preferences",
+                    "Billing setup",
+                    "Specific role requirements",
+                    "Start date preferences",
+                    "Agreement acceptance",
+                  ].map((item, i) => (
+                    <div key={i} className="flex items-center gap-2 rounded-lg border p-3">
+                      <div className="w-5 h-5 rounded bg-pink-100 text-pink-700 text-xs flex items-center justify-center font-bold">{i + 1}</div>
+                      <span className="text-sm">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="welcome-partnership" className="border rounded-lg px-4">
+                  <AccordionTrigger className="hover:no-underline py-4">
+                    <span>Email Template: Welcome to Partnership</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="pb-6">
+                    <div className="space-y-2 text-sm">
+                      <p><strong>Subject:</strong> Welcome to Yoonet — Let&apos;s build something great together</p>
+                      <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
+{`Hi [Contact First Name],
+
+Welcome to the Yoonet family. We're thrilled to officially begin our partnership with [Business Name].
+
+Here's what happens next:
+
+1. This week: Our recruitment team will begin sourcing candidates based on your requirements
+2. Within 5-7 business days: You'll receive 2-3 candidate profiles to review
+3. Once you select: We'll begin onboarding your new team member
+
+Your dedicated contacts:
+- Ben Carter — Founder, strategic partnership
+- [Recruitment contact] — Your recruitment process
+- [Support contact] — Ongoing support
+
+If you have any questions at any time, simply reply to this email or reach out via Slack.
+
+We're excited to see what we can achieve together.
+
+Warmest regards,
+The Yoonet Team`}
+                      </pre>
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </TabsContent>
+          </Tabs>
+        </CardContent>
+      </Card>
+
+      {/* Claude API Integration */}
       <Card className="mb-10 overflow-hidden">
         <CardHeader className="bg-muted/30 border-b">
           <div className="flex items-center gap-3">
@@ -178,127 +729,58 @@ export default function ManifestoPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
               </svg>
             </div>
-            <CardTitle>Claude API Configuration</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent className="pt-8 space-y-6">
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { label: "API Name", value: "Claude_Proposal_Generator" },
-              { label: "Method", value: "POST" },
-              { label: "Model", value: "claude-sonnet-4-20250514" },
-            ].map((item, i) => (
-              <div key={i} className="rounded-lg bg-muted/30 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</p>
-                <p className="font-mono text-sm">{item.value}</p>
-              </div>
-            ))}
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-3">Base URL</h3>
-            <code className="block bg-muted rounded-lg p-4 text-sm font-mono">
-              https://api.anthropic.com/v1/messages
-            </code>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-3">Required Headers</h3>
-            <div className="bg-muted rounded-lg p-4 font-mono text-sm space-y-1">
-              <p><span className="text-muted-foreground">Content-Type:</span> application/json</p>
-              <p><span className="text-muted-foreground">x-api-key:</span> [Your API Key]</p>
-              <p><span className="text-muted-foreground">anthropic-version:</span> 2023-06-01</p>
-            </div>
-          </div>
-
-          <div>
-            <h3 className="font-semibold mb-3">Dynamic Values to Pass</h3>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {[
-                { key: "<client_name_value>", desc: "Client's business name" },
-                { key: "<understanding_value>", desc: "understanding_of_needs field" },
-                { key: "<solutions_value>", desc: "proposed_solutions field" },
-                { key: "<timing_value>", desc: "timing_next_steps field" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3 rounded-lg border p-3">
-                  <code className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">{item.key}</code>
-                  <span className="text-sm text-muted-foreground">→ {item.desc}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* The Prompt */}
-      <Card className="mb-10 overflow-hidden">
-        <CardHeader className="bg-muted/30 border-b">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-              </svg>
-            </div>
-            <CardTitle>The Prompt</CardTitle>
+            <CardTitle>Claude API Integration</CardTitle>
           </div>
         </CardHeader>
         <CardContent className="pt-8 space-y-8">
           <div>
-            <h3 className="font-semibold text-lg mb-4">System Context</h3>
-            <p className="text-muted-foreground mb-6">The prompt instructs Claude to understand three key areas:</p>
+            <h3 className="font-semibold text-lg mb-4">Form HTML Generation</h3>
+            <p className="text-muted-foreground mb-4">
+              Claude generates bespoke Partner Assessment Form HTML based on business details.
+            </p>
+            <pre className="bg-muted rounded-xl p-6 font-mono text-xs overflow-x-auto whitespace-pre-wrap leading-relaxed">
+{`You are generating a Partner Assessment Form for Yoonet. This form will be sent to a prospective client to gather information before their meeting with Ben.
 
-            <div className="grid md:grid-cols-3 gap-4">
-              <div className="rounded-xl border p-5 hover:border-primary/30 transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                  <span className="text-sm font-bold text-primary">1</span>
-                </div>
-                <h4 className="font-semibold mb-2">Who Yoonet Is</h4>
-                <ul className="text-sm text-muted-foreground space-y-1.5">
-                  <li>• 15 years in operation</li>
-                  <li>• Based in Bataan, Philippines</li>
-                  <li>• Serves AU/NZ/UK SMEs</li>
-                  <li>• Virtual assistant specialists</li>
-                  <li>• Incorporated employment model</li>
-                </ul>
-              </div>
+BUSINESS DETAILS:
+Name: [business_name]
+Industry: [industry]
+Website: [website]
+Initial notes: [notes from Em]
 
-              <div className="rounded-xl border p-5 hover:border-primary/30 transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                  <span className="text-sm font-bold text-primary">2</span>
-                </div>
-                <h4 className="font-semibold mb-2">What to Convey</h4>
-                <ul className="text-sm text-muted-foreground space-y-1.5">
-                  <li>• Professional partnership</li>
-                  <li>• Clear understanding of needs</li>
-                  <li>• Tailored solutions</li>
-                  <li>• Transparent next steps</li>
-                  <li>• Confidence and trust</li>
-                </ul>
-              </div>
+INSTRUCTIONS:
+Generate HTML for a Partner Assessment Form that:
+1. Asks relevant questions for their specific industry
+2. Gathers information about their current admin challenges
+3. Understands their team structure and capacity
+4. Identifies their priorities and timeline
+5. Uses warm, professional language
+6. Is mobile-responsive with clean formatting
 
-              <div className="rounded-xl border p-5 hover:border-primary/30 transition-colors">
-                <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center mb-3">
-                  <span className="text-sm font-bold text-primary">3</span>
-                </div>
-                <h4 className="font-semibold mb-2">Tone & Style</h4>
-                <ul className="text-sm text-muted-foreground space-y-1.5">
-                  <li>• Warm but professional</li>
-                  <li>• Clear and direct</li>
-                  <li>• No corporate jargon</li>
-                  <li>• UK English spelling</li>
-                  <li>• Confident, not arrogant</li>
-                </ul>
-              </div>
-            </div>
+Do not ask about:
+- Sensitive financial details
+- Information not relevant to VA services
+- Generic questions that don't relate to their business
+
+Output clean HTML only, no markdown or explanation.`}
+            </pre>
           </div>
 
           <div>
-            <h3 className="font-semibold text-lg mb-4">Full Prompt Template</h3>
-            <div className="relative">
-              <div className="absolute top-3 right-3">
-                <Badge variant="secondary" className="text-xs">Copy to Bubble</Badge>
-              </div>
-              <pre className="bg-muted rounded-xl p-6 font-mono text-xs overflow-x-auto whitespace-pre-wrap leading-relaxed">
+            <h3 className="font-semibold text-lg mb-4">Proposal HTML Generation</h3>
+            <div className="grid md:grid-cols-3 gap-4 mb-6">
+              {[
+                { label: "Endpoint", value: "api.anthropic.com/v1/messages" },
+                { label: "Model", value: "claude-sonnet-4-20250514" },
+                { label: "Max tokens", value: "4096" },
+              ].map((item, i) => (
+                <div key={i} className="rounded-lg bg-muted/30 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1">{item.label}</p>
+                  <p className="font-mono text-sm">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+            <pre className="bg-muted rounded-xl p-6 font-mono text-xs overflow-x-auto whitespace-pre-wrap leading-relaxed">
 {`You are generating a proposal page for Yoonet, a Business Process Outsourcing company that provides virtual assistant services to small and medium enterprises in Australia, New Zealand, and the United Kingdom.
 
 ABOUT YOONET:
@@ -339,8 +821,7 @@ Generate a complete HTML proposal section with:
    - Output ONLY the HTML content
    - No <!DOCTYPE>, <html>, <head>, or <body>
    - Start with a container <div>`}
-              </pre>
-            </div>
+            </pre>
           </div>
         </CardContent>
       </Card>
@@ -370,7 +851,8 @@ Generate a complete HTML proposal section with:
                 <div className="rounded-lg bg-amber-50 dark:bg-amber-950/30 p-4 border border-amber-200 dark:border-amber-900">
                   <p className="text-sm">
                     Summarise what we&apos;ve learned about this client&apos;s situation and challenges.
-                    Write in second person. Be specific — avoid generic statements.
+                    Write in second person (&quot;You mentioned...&quot;, &quot;Your practice is experiencing...&quot;).
+                    Be specific to their business — avoid generic statements.
                   </p>
                 </div>
                 <p className="text-sm text-muted-foreground">Character guidance: 200-500 words</p>
@@ -379,9 +861,9 @@ Generate a complete HTML proposal section with:
                   <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
 {`Your podiatry practice in Brisbane has grown to four practitioners seeing approximately 180 patients per week. You're currently spending 15+ hours weekly on administrative tasks including appointment confirmations, Medicare claims processing, and patient follow-ups.
 
-You mentioned that your current part-time receptionist is struggling to keep up with the patient communication load, resulting in missed appointment reminders and delayed billing.
+You mentioned that your current part-time receptionist is struggling to keep up with the patient communication load, resulting in missed appointment reminders and delayed billing. You're looking for reliable administrative support that understands the allied health space and can integrate with your Cliniko system.
 
-Your priority is reducing the administrative burden on your clinical team so they can focus on patient care.`}
+Your priority is reducing the administrative burden on your clinical team so they can focus on patient care, while ensuring nothing falls through the cracks with Medicare compliance and patient communication.`}
                   </pre>
                 </div>
               </AccordionContent>
@@ -397,7 +879,7 @@ Your priority is reducing the administrative burden on your clinical team so the
               <AccordionContent className="pb-6 space-y-4">
                 <div className="rounded-lg bg-amber-50 dark:bg-amber-950/30 p-4 border border-amber-200 dark:border-amber-900">
                   <p className="text-sm">
-                    Outline what we&apos;re recommending. Be specific about role, hours, and responsibilities.
+                    Outline what we&apos;re recommending for this client. Be specific about the role, hours, and what they&apos;ll handle.
                     Connect the solution directly to the needs identified above.
                   </p>
                 </div>
@@ -408,13 +890,15 @@ Your priority is reducing the administrative burden on your clinical team so the
 {`We recommend a dedicated Virtual Assistant working 30 hours per week, specialising in allied health administration with Cliniko expertise.
 
 Your VA will handle:
-- Daily appointment confirmations and reminders
+- Daily appointment confirmations and reminders via SMS and email
 - Medicare claims processing and reconciliation
-- Patient follow-up coordination
-- Inbox management and enquiry responses
+- Patient follow-up coordination and recall management
+- Inbox management and patient enquiry responses
 - End-of-day billing reconciliation
 
-Your VA will work during practice hours (8am-5pm AEST) with real-time Slack availability.`}
+This setup directly addresses your capacity constraints by removing the administrative load from your clinical team and reception. With dedicated focus on your practice, your VA will ensure consistent patient communication and timely Medicare processing.
+
+Your VA will work during your practice hours (8am-5pm AEST) with real-time availability via Slack for urgent matters. They'll be fully trained on Cliniko workflows specific to podiatry practices before their first day with you.`}
                   </pre>
                 </div>
               </AccordionContent>
@@ -431,25 +915,27 @@ Your VA will work during practice hours (8am-5pm AEST) with real-time Slack avai
                 <div className="rounded-lg bg-pink-50 dark:bg-pink-950/30 p-4 border border-pink-200 dark:border-pink-900">
                   <p className="text-sm">
                     Outline the timeline and what happens next. Be specific about dates where possible.
-                    Include recruitment, onboarding, and go-live expectations.
+                    Include the recruitment process, onboarding, and when they can expect to be operational.
                   </p>
                 </div>
                 <p className="text-sm text-muted-foreground">Character guidance: 150-300 words</p>
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Example Input</p>
                   <pre className="bg-muted rounded-lg p-4 text-xs overflow-x-auto whitespace-pre-wrap">
-{`Once you're ready to proceed:
+{`Once you're ready to proceed, here's what happens next:
 
 Week 1-2: Recruitment
-We'll shortlist candidates with allied health and Cliniko experience. You'll receive 2-3 profiles with video introductions.
+We'll shortlist candidates from our existing talent pool who have allied health and Cliniko experience. You'll receive 2-3 candidate profiles to review, with video introductions.
 
 Week 3: Selection & Onboarding
-Structured onboarding with Cliniko-specific training for your workflows.
+After you select your preferred candidate, we begin our structured onboarding process. This includes Cliniko-specific training tailored to podiatry workflows and your practice's particular processes.
 
 Week 4: Go Live
-Your VA begins with daily check-ins for the first two weeks.
+Your VA begins working with your practice. The first two weeks include daily check-ins to ensure everything is running smoothly.
 
-To get started, click the button below to access your onboarding portal.`}
+Ongoing: Your dedicated VA works as an extension of your team, with Yoonet handling all employment compliance, payroll, and HR matters.
+
+To get started, simply click the button below to access your onboarding portal. From there, you'll complete a brief setup form and we'll begin the recruitment process within 48 hours.`}
                   </pre>
                 </div>
               </AccordionContent>
@@ -458,194 +944,160 @@ To get started, click the button below to access your onboarding portal.`}
         </CardContent>
       </Card>
 
-      {/* Quality Control */}
+      {/* Portal Content */}
       <Card className="mb-10 overflow-hidden">
         <CardHeader className="bg-muted/30 border-b">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
             </div>
-            <CardTitle>Quality Control</CardTitle>
+            <CardTitle>Portal Content Structure</CardTitle>
           </div>
         </CardHeader>
         <CardContent className="pt-8">
           <div className="grid md:grid-cols-2 gap-8">
             <div>
-              <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-                <span className="text-amber-600">●</span> Before Generation
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">Checklist for Em/Nicole:</p>
-              <ul className="space-y-3">
-                {[
-                  "Client name is correct and spelled properly",
-                  "Understanding of Needs is specific (not generic)",
-                  "Proposed Solutions connects to stated needs",
-                  "Hours/role details are accurate",
-                  "Timing is realistic and specific",
-                  "No placeholder text remaining",
-                  "UK English spelling throughout",
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm">
-                    <div className="w-5 h-5 rounded border-2 border-muted-foreground/30 flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
+              <h3 className="font-semibold mb-4">Portal Structure</h3>
+              <pre className="text-xs font-mono bg-muted rounded-lg p-4 overflow-x-auto">
+{`Client Portal (Bubble)
+│
+├── Welcome
+│   └── Getting Started
+│
+├── About Yoonet
+│   ├── How We Work
+│   ├── Our Team
+│   └── Our Story
+│
+├── What to Expect
+│   ├── The Process
+│   ├── Timeline
+│   └── Your Investment
+│
+├── Resources
+│   ├── Case Studies
+│   ├── FAQs
+│   └── Testimonials
+│
+└── Your Journey
+    └── Progress tracker`}
+              </pre>
             </div>
 
             <div>
-              <h3 className="font-semibold text-lg mb-4 flex items-center gap-2">
-                <span className="text-emerald-600">●</span> After Generation
-              </h3>
-              <p className="text-sm text-muted-foreground mb-4">Ben&apos;s review checklist:</p>
-              <ul className="space-y-3">
+              <h3 className="font-semibold mb-4">Content Release Schedule</h3>
+              <div className="space-y-3">
                 {[
-                  "Client name appears correctly throughout",
-                  "Tone is warm and professional",
-                  "No generic or templated language",
-                  "Solutions address stated needs",
-                  "Timeline is accurate and achievable",
-                  "Call to action is clear",
-                  "No spelling or grammatical errors",
-                  "Mobile view looks good",
+                  { stage: "1 - Inquiry", content: "Welcome + Getting Started", trigger: "Client created" },
+                  { stage: "2 - Engaged", content: "How We Work, Investment Guide", trigger: "Meeting booked / Form sent" },
+                  { stage: "3 - Discovery", content: "Case Studies, Testimonials", trigger: "Assessment submitted" },
+                  { stage: "4 - Proposal", content: "FAQ", trigger: "Proposal sent" },
+                  { stage: "5 - Onboarding", content: "Full portal access", trigger: "Onboarding started" },
                 ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-3 text-sm">
-                    <div className="w-5 h-5 rounded border-2 border-muted-foreground/30 flex-shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
+                  <div key={i} className="rounded-lg border p-3 text-sm">
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-semibold">{item.stage}</span>
+                      <Badge variant="outline" className="text-xs">{item.trigger}</Badge>
+                    </div>
+                    <p className="text-muted-foreground text-xs">{item.content}</p>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </div>
           </div>
 
-          <div className="mt-8 rounded-xl bg-muted/30 p-6">
-            <h3 className="font-semibold mb-3">Revision Process</h3>
-            <p className="text-sm text-muted-foreground mb-4">If Ben requests changes:</p>
-            <div className="flex flex-wrap gap-2 items-center text-sm">
-              <span className="px-3 py-1.5 rounded-full bg-background border">Update inputs</span>
-              <span className="text-muted-foreground">→</span>
-              <span className="px-3 py-1.5 rounded-full bg-background border">Regenerate</span>
-              <span className="text-muted-foreground">→</span>
-              <span className="px-3 py-1.5 rounded-full bg-background border">Review again</span>
-              <span className="text-muted-foreground">→</span>
-              <span className="px-3 py-1.5 rounded-full bg-background border">Repeat until approved</span>
+          <div className="mt-8">
+            <h3 className="font-semibold mb-4">Portal Content: How We Work</h3>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {[
+                { title: "Partnership, Not Outsourcing", desc: "We're an extension of your team, not a faceless service" },
+                { title: "The Yoonet Difference", desc: "Regional Philippines, incorporated employment, 15 years experience" },
+                { title: "What Your VA Handles", desc: "Admin tasks, communication, scheduling, industry-specific work" },
+                { title: "How We Stay Connected", desc: "Real-time Slack, regular check-ins, dedicated support" },
+                { title: "Compliance & Security", desc: "AU/NZ/UK law compliance, data security, employment standards" },
+              ].map((item, i) => (
+                <div key={i} className="rounded-lg border p-4">
+                  <p className="font-semibold text-sm mb-1">{item.title}</p>
+                  <p className="text-xs text-muted-foreground">{item.desc}</p>
+                </div>
+              ))}
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Publishing & URL */}
+      {/* Metrics */}
       <Card className="mb-10 overflow-hidden">
         <CardHeader className="bg-muted/30 border-b">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
               <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
               </svg>
             </div>
-            <CardTitle>Publishing to yoonet.io</CardTitle>
+            <CardTitle>Metrics & Targets</CardTitle>
           </div>
         </CardHeader>
-        <CardContent className="pt-8 space-y-6">
-          <div className="grid md:grid-cols-2 gap-6">
-            <div className="rounded-xl border p-6">
-              <Badge variant="outline" className="mb-3">Current</Badge>
-              <h3 className="font-semibold text-lg mb-3">Option A: Manual Copy</h3>
-              <ol className="text-sm text-muted-foreground space-y-2">
-                <li>1. Ben approves proposal in Bubble</li>
-                <li>2. Nicole copies generated HTML</li>
-                <li>3. Creates page at yoonet.io/proposals/[slug]</li>
-                <li>4. Generates PIN and adds access control</li>
-                <li>5. Updates Bubble record with URL and PIN</li>
-              </ol>
-            </div>
-            <div className="rounded-xl border p-6 opacity-60">
-              <Badge variant="outline" className="mb-3">Future</Badge>
-              <h3 className="font-semibold text-lg mb-3">Option B: Automated via Webflow</h3>
-              <ol className="text-sm text-muted-foreground space-y-2">
-                <li>1. Ben approves in Bubble</li>
-                <li>2. Bubble triggers Webflow API</li>
-                <li>3. Page created automatically</li>
-                <li>4. PIN generated and stored</li>
-                <li>5. Nicole notified when live</li>
-              </ol>
-            </div>
-          </div>
-
-          <div className="rounded-xl bg-muted/30 p-6">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">URL Structure</p>
-                <code className="text-sm font-mono">yoonet.io/proposals/[client-slug]</code>
-                <p className="text-xs text-muted-foreground mt-2">Example: yoonet.io/proposals/brisbane-podiatry-clinic</p>
+        <CardContent className="pt-8">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <h3 className="font-semibold mb-4">Process Metrics</h3>
+              <div className="space-y-3">
+                {[
+                  { metric: "Inquiry → First response", target: "< 1 hour" },
+                  { metric: "Inquiry → Meeting booked", target: "< 24 hours" },
+                  { metric: "Form creation turnaround", target: "< 1 business day" },
+                  { metric: "Meeting → Proposal delivered", target: "< 48 hours" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center justify-between py-2 border-b last:border-0">
+                    <span className="text-sm text-muted-foreground">{item.metric}</span>
+                    <Badge variant="outline">{item.target}</Badge>
+                  </div>
+                ))}
               </div>
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">PIN System</p>
-                <p className="text-sm text-muted-foreground">6-digit PIN generated in Bubble, stored on Proposal record, client enters to view.</p>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Conversion Metrics</h3>
+              <div className="space-y-3">
+                {[
+                  { metric: "Inquiry → Engaged", target: "> 90%" },
+                  { metric: "Engaged → Discovery", target: "> 80%" },
+                  { metric: "Discovery → Proposal", target: "> 90%" },
+                  { metric: "Proposal → Onboarding", target: "> 60%" },
+                  { metric: "Overall Inquiry → Onboarding", target: "> 40%" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center justify-between py-2 border-b last:border-0">
+                    <span className="text-sm text-muted-foreground">{item.metric}</span>
+                    <Badge variant="outline">{item.target}</Badge>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-4">Quality Metrics</h3>
+              <div className="space-y-3">
+                {[
+                  { metric: "Assessment completion rate", target: "> 90%" },
+                  { metric: "Meeting no-show rate", target: "< 10%" },
+                  { metric: "Proposal acceptance rate", target: "> 60%" },
+                  { metric: "Client satisfaction (NPS)", target: "> 8" },
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center justify-between py-2 border-b last:border-0">
+                    <span className="text-sm text-muted-foreground">{item.metric}</span>
+                    <Badge variant="outline">{item.target}</Badge>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </CardContent>
       </Card>
 
-      {/* Cost & Security */}
-      <div className="grid md:grid-cols-2 gap-6 mb-10">
-        <Card className="overflow-hidden">
-          <CardHeader className="bg-muted/30 border-b">
-            <CardTitle className="text-lg">Cost Estimate</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <div className="space-y-4">
-              <div className="flex justify-between items-center py-2 border-b">
-                <span className="text-muted-foreground">Input tokens</span>
-                <span className="font-mono">~1,500</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b">
-                <span className="text-muted-foreground">Output tokens</span>
-                <span className="font-mono">~2,000</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b">
-                <span className="text-muted-foreground">Per proposal</span>
-                <span className="font-mono">$0.02 - $0.05</span>
-              </div>
-              <div className="flex justify-between items-center py-2">
-                <span className="font-semibold">100 proposals/month</span>
-                <span className="font-mono font-semibold">$2 - $5</span>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="overflow-hidden">
-          <CardHeader className="bg-muted/30 border-b">
-            <CardTitle className="text-lg">Security</CardTitle>
-          </CardHeader>
-          <CardContent className="pt-6">
-            <div className="space-y-4">
-              <div>
-                <h4 className="font-semibold text-sm mb-2">API Key Management</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• Store as private key in Bubble</li>
-                  <li>• Never expose client-side</li>
-                  <li>• Rotate if compromised</li>
-                </ul>
-              </div>
-              <div>
-                <h4 className="font-semibold text-sm mb-2">Client Data</h4>
-                <ul className="text-sm text-muted-foreground space-y-1">
-                  <li>• No data stored by Anthropic</li>
-                  <li>• PIN protection for proposals</li>
-                  <li>• HTTPS for all communications</li>
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      {/* Testing Phases */}
+      {/* Implementation Phases */}
       <Card className="mb-10 overflow-hidden">
         <CardHeader className="bg-muted/30 border-b">
           <div className="flex items-center gap-3">
@@ -654,17 +1106,37 @@ To get started, click the button below to access your onboarding portal.`}
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
               </svg>
             </div>
-            <CardTitle>Testing Phases</CardTitle>
+            <CardTitle>Implementation Phases</CardTitle>
           </div>
         </CardHeader>
         <CardContent className="pt-8">
           <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {[
-              { phase: 1, title: "API Connection", items: ["Connector configured", "Test call works", "Response parsing OK"] },
-              { phase: 2, title: "Basic Generation", items: ["Valid HTML output", "Displays correctly", "Dynamic values work"] },
-              { phase: 3, title: "Quality Testing", items: ["5 scenario tests", "Ben review", "Prompt refinement"] },
-              { phase: 4, title: "Full Workflow", items: ["End-to-end test", "Real client data", "Email delivery"] },
-              { phase: 5, title: "Team Training", items: ["Em trained", "Nicole trained", "Ben trained"] },
+              {
+                phase: 1,
+                title: "Foundation",
+                items: ["Document current process", "Set up Bubble data structures", "Create Priority 1 email templates", "Configure SendGrid", "Set up dashboard notifications", "Train Nicole on inquiry response"]
+              },
+              {
+                phase: 2,
+                title: "Form Loop",
+                items: ["Develop Claude prompts for forms", "Build form generator in Bubble", "Create form template library", "Document Em/Nicole collaboration", "Train team on workflow"]
+              },
+              {
+                phase: 3,
+                title: "Proposal System",
+                items: ["Integrate Claude API into Bubble", "Build proposal generator workflow", "Create proposal page template", "Set up PIN system", "Establish Ben review workflow"]
+              },
+              {
+                phase: 4,
+                title: "Automation",
+                items: ["Implement email nurturing", "Build portal with staged content", "Set up automated notifications", "Create progress tracking", "Test end-to-end flow"]
+              },
+              {
+                phase: 5,
+                title: "Optimisation",
+                items: ["Gather metrics", "Collect team feedback", "Iterate on content and timing", "Refine prompts", "Document edge cases"]
+              },
             ].map((phase) => (
               <div key={phase.phase} className="rounded-xl border p-5">
                 <div className="flex items-center gap-2 mb-3">
@@ -685,6 +1157,226 @@ To get started, click the button below to access your onboarding portal.`}
         </CardContent>
       </Card>
 
+      {/* Team Responsibilities */}
+      <Card className="mb-10 overflow-hidden">
+        <CardHeader className="bg-muted/30 border-b">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+            </div>
+            <CardTitle>Team Responsibilities</CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-8">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="rounded-xl border p-6">
+              <Badge className="bg-amber-100 text-amber-700 hover:bg-amber-100 mb-4">Em</Badge>
+              <ul className="text-sm space-y-3">
+                {[
+                  { stage: "2", task: "Review business for legitimacy and red flags" },
+                  { stage: "2", task: "Create Partner Assessment Form HTML (with Claude)" },
+                  { stage: "2", task: "Feedback loop with Nicole on form refinement" },
+                  { stage: "4", task: "Draft Understanding of Needs" },
+                  { stage: "4", task: "Draft Proposed Solutions" },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Badge variant="outline" className="text-xs shrink-0">Stage {item.stage}</Badge>
+                    <span className="text-muted-foreground">{item.task}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-xl border p-6">
+              <Badge className="bg-pink-100 text-pink-700 hover:bg-pink-100 mb-4">Nicole</Badge>
+              <ul className="text-sm space-y-3">
+                {[
+                  { stage: "1", task: "Monitor dashboard for new inquiries" },
+                  { stage: "2", task: "Send booking link email" },
+                  { stage: "2", task: "Refine and approve assessment forms" },
+                  { stage: "2", task: "Send assessment form to client" },
+                  { stage: "4", task: "Add Timing & Next Steps" },
+                  { stage: "4", task: "Generate and publish proposal" },
+                  { stage: "4", task: "Send proposal (after Ben approval)" },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Badge variant="outline" className="text-xs shrink-0">Stage {item.stage}</Badge>
+                    <span className="text-muted-foreground">{item.task}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-xl border p-6">
+              <Badge className="bg-blue-100 text-blue-700 hover:bg-blue-100 mb-4">Ben</Badge>
+              <ul className="text-sm space-y-3">
+                {[
+                  { stage: "3", task: "Review assessment before meeting" },
+                  { stage: "3", task: "Conduct discovery meeting" },
+                  { stage: "3", task: "Capture meeting insights for Em/Nicole" },
+                  { stage: "4", task: "Review and approve all proposals" },
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2">
+                    <Badge variant="outline" className="text-xs shrink-0">Stage {item.stage}</Badge>
+                    <span className="text-muted-foreground">{item.task}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      {/* Appendices */}
+      <Card className="mb-10 overflow-hidden">
+        <CardHeader className="bg-muted/30 border-b">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+              <svg className="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+            </div>
+            <CardTitle>Appendices</CardTitle>
+          </div>
+        </CardHeader>
+        <CardContent className="pt-6">
+          <Accordion type="single" collapsible className="w-full">
+            <AccordionItem value="red-flags" className="border rounded-lg mb-3 px-4">
+              <AccordionTrigger className="hover:no-underline py-4">
+                <span>Appendix A: Red Flag Businesses (Do Not Proceed)</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <div className="rounded-lg bg-red-50 dark:bg-red-950/30 p-4 border border-red-200 dark:border-red-900">
+                  <ul className="text-sm space-y-2">
+                    <li>• Corporates</li>
+                    <li>• Financial advisers</li>
+                    <li>• Lawyers</li>
+                    <li>• Accountants</li>
+                    <li>• Any business on compliance &quot;no-touch&quot; list</li>
+                  </ul>
+                  <p className="text-sm mt-4 text-red-700 dark:text-red-400">
+                    If identified during Em&apos;s review, flag to Ben before proceeding.
+                  </p>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="email-index" className="border rounded-lg mb-3 px-4">
+              <AccordionTrigger className="hover:no-underline py-4">
+                <span>Appendix B: Email Template Index</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <div className="overflow-x-auto rounded-lg border">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-muted/50">
+                        <th className="text-left py-2 px-3 font-semibold">Email</th>
+                        <th className="text-left py-2 px-3 font-semibold">Stage</th>
+                        <th className="text-left py-2 px-3 font-semibold">Trigger</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      {[
+                        ["Welcome", "1", "Client created"],
+                        ["Portal Access", "1", "Client created"],
+                        ["Booking Link", "2", "Manual (Nicole)"],
+                        ["Form Delivery", "2", "Form ready"],
+                        ["Form Reminder", "2", "24hr no completion"],
+                        ["Pre-meeting Content", "2", "Meeting booked"],
+                        ["Assessment Confirmation", "3", "Form submitted"],
+                        ["Proposal Delivery", "4", "Ben approved"],
+                        ["Follow-up (48hr)", "4", "No response"],
+                        ["Follow-up (5 day)", "4", "No response"],
+                        ["Welcome to Partnership", "5", "Onboarding complete"],
+                      ].map(([email, stage, trigger], i) => (
+                        <tr key={i} className="hover:bg-muted/30">
+                          <td className="py-2 px-3">{email}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{stage}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{trigger}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="portal-index" className="border rounded-lg mb-3 px-4">
+              <AccordionTrigger className="hover:no-underline py-4">
+                <span>Appendix C: Portal Content Index</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <div className="overflow-x-auto rounded-lg border">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-muted/50">
+                        <th className="text-left py-2 px-3 font-semibold">Content</th>
+                        <th className="text-left py-2 px-3 font-semibold">Stage Available</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      {[
+                        ["Getting Started", "1"],
+                        ["How We Work", "2"],
+                        ["Investment Guide", "2"],
+                        ["The Process", "2"],
+                        ["Case Studies", "3"],
+                        ["Our Team", "3"],
+                        ["Testimonials", "3"],
+                        ["FAQs", "4"],
+                        ["Full Access", "5"],
+                      ].map(([content, stage], i) => (
+                        <tr key={i} className="hover:bg-muted/30">
+                          <td className="py-2 px-3">{content}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{stage}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+
+            <AccordionItem value="decisions" className="border rounded-lg px-4">
+              <AccordionTrigger className="hover:no-underline py-4">
+                <span>Appendix D: Confirmed Decisions</span>
+              </AccordionTrigger>
+              <AccordionContent className="pb-6">
+                <div className="overflow-x-auto rounded-lg border">
+                  <table className="w-full text-sm">
+                    <thead>
+                      <tr className="bg-muted/50">
+                        <th className="text-left py-2 px-3 font-semibold">Decision</th>
+                        <th className="text-left py-2 px-3 font-semibold">Answer</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y">
+                      {[
+                        ["Email platform", "Bubble + SendGrid"],
+                        ["Portal hosting", "Bubble"],
+                        ["Proposal HTML generation", "Claude API integrated into Bubble"],
+                        ["Proposal approval", "Ben reviews all proposals"],
+                        ["Content format", "Written only (no video)"],
+                        ["Scope", "Yoonet only (Allied Flow separate)"],
+                        ["Form creation target", "< 1 business day"],
+                        ["Proposal delivery target", "< 48 hours from meeting"],
+                      ].map(([decision, answer], i) => (
+                        <tr key={i} className="hover:bg-muted/30">
+                          <td className="py-2 px-3">{decision}</td>
+                          <td className="py-2 px-3 text-muted-foreground">{answer}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          </Accordion>
+        </CardContent>
+      </Card>
+
       {/* Summary */}
       <div className="mb-16 max-w-4xl mx-auto">
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5 p-8 md:p-12">
@@ -692,14 +1384,15 @@ To get started, click the button below to access your onboarding portal.`}
           <div className="relative">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Key Success Factors</h2>
             <p className="text-muted-foreground mb-6">
-              The key to quality output is quality input. The more specific and clear the inputs from Em and Nicole, the better Claude&apos;s proposals will be.
+              The key to quality output is quality input. The more specific and clear the inputs from Em and Nicole,
+              the better the proposals will be.
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                "Clear, specific inputs (not generic)",
-                "Ben's review catches issues before sending",
+                "Clear, specific inputs (not generic descriptions)",
+                "Ben's review catches any issues before sending",
                 "Consistent use of input guidelines",
-                "Prompt refinement over time",
+                "Refinement of prompts over time based on feedback",
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -720,7 +1413,7 @@ To get started, click the button below to access your onboarding portal.`}
           <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
           <span>January 2026</span>
           <span className="w-1 h-1 rounded-full bg-muted-foreground/50" />
-          <span>Ben Carter / Em</span>
+          <span>Ben Carter</span>
         </div>
       </div>
     </div>
