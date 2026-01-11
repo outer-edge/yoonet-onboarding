@@ -30,7 +30,7 @@ export default function PlaybookPage() {
       {/* Executive Summary */}
       <div className="mb-16 max-w-4xl mx-auto">
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-primary/10 to-primary/5 p-8 md:p-12">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
           <div className="relative">
             <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">Executive Summary</h2>
             <p className="text-lg md:text-xl text-foreground/90 leading-relaxed mb-6">
@@ -1380,7 +1380,7 @@ To get started, simply click the button below to access your onboarding portal. 
       {/* Summary */}
       <div className="mb-16 max-w-4xl mx-auto">
         <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/5 via-transparent to-primary/5 p-8 md:p-12">
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" />
           <div className="relative">
             <h2 className="text-2xl md:text-3xl font-bold mb-4">Key Success Factors</h2>
             <p className="text-muted-foreground mb-6">

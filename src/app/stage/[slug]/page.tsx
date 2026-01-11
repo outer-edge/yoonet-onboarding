@@ -69,11 +69,11 @@ export default function StagePage() {
       {/* Hero Section */}
       <div className="mb-10">
         <div
-          className="relative overflow-hidden rounded-2xl p-8 md:p-12"
+          className="relative rounded-2xl p-8 md:p-12 overflow-hidden"
           style={{ backgroundColor: stage.lightColor }}
         >
           <div
-            className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
+            className="absolute top-0 right-0 w-64 h-64 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"
             style={{ backgroundColor: stage.color, opacity: 0.1 }}
           />
           <div className="relative">

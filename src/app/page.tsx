@@ -103,7 +103,7 @@ export default function DashboardPage() {
         </h2>
 
         <div className="grid gap-4 md:grid-cols-5">
-          {stages.map((stage, i) => (
+          {stages.map((stage) => (
             <Link key={stage.id} href={`/stage/${stage.slug}`} className="group">
               <Card
                 className="h-full transition-all hover:shadow-lg hover:-translate-y-1 overflow-hidden border-2"
@@ -116,18 +116,11 @@ export default function DashboardPage() {
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-3 mb-2">
                     <div
-                      className="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold text-white shadow-md"
+                      className="w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold text-white shadow-md shrink-0"
                       style={{ backgroundColor: stage.color }}
                     >
                       {stage.id}
                     </div>
-                    {i < stages.length - 1 && (
-                      <div className="hidden md:block absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 z-10">
-                        <svg className="w-4 h-4 text-muted-foreground/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                        </svg>
-                      </div>
-                    )}
                   </div>
                   <CardTitle className="text-lg">{stage.name}</CardTitle>
                 </CardHeader>
