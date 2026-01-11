@@ -99,11 +99,11 @@ export default function StagePage() {
       </div>
 
       {/* Goal & Criteria */}
-      <div className="grid md:grid-cols-3 gap-4 mb-10">
-        <Card className="overflow-hidden">
-          <CardHeader className="pb-2" style={{ backgroundColor: stage.lightColor }}>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10 w-full">
+        <Card className="overflow-hidden min-w-0">
+          <CardHeader className="pb-2 -mx-6 -mt-6 px-6 pt-4" style={{ backgroundColor: stage.lightColor }}>
             <CardTitle className="text-base flex items-center gap-2">
-              <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
               Goal
@@ -114,10 +114,10 @@ export default function StagePage() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden">
-          <CardHeader className="pb-2" style={{ backgroundColor: stage.lightColor }}>
+        <Card className="overflow-hidden min-w-0">
+          <CardHeader className="pb-2 -mx-6 -mt-6 px-6 pt-4" style={{ backgroundColor: stage.lightColor }}>
             <CardTitle className="text-base flex items-center gap-2">
-              <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
               </svg>
               Entry Trigger
@@ -128,10 +128,10 @@ export default function StagePage() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden">
-          <CardHeader className="pb-2" style={{ backgroundColor: stage.lightColor }}>
+        <Card className="overflow-hidden min-w-0">
+          <CardHeader className="pb-2 -mx-6 -mt-6 px-6 pt-4" style={{ backgroundColor: stage.lightColor }}>
             <CardTitle className="text-base flex items-center gap-2">
-              <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Exit Criteria
@@ -144,10 +144,10 @@ export default function StagePage() {
       </div>
 
       {/* Tasks */}
-      <Card className="mb-10 overflow-hidden">
-        <CardHeader className="border-b" style={{ backgroundColor: stage.lightColor }}>
+      <Card className="mb-10 overflow-hidden min-w-0">
+        <CardHeader className="border-b -mx-6 -mt-6 px-6 py-4" style={{ backgroundColor: stage.lightColor }}>
           <CardTitle className="flex items-center gap-2">
-            <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
             </svg>
             Tasks
@@ -171,10 +171,10 @@ export default function StagePage() {
       </Card>
 
       {/* Automations */}
-      <Card className="mb-10 overflow-hidden">
-        <CardHeader className="border-b" style={{ backgroundColor: stage.lightColor }}>
+      <Card className="mb-10 overflow-hidden min-w-0">
+        <CardHeader className="border-b -mx-6 -mt-6 px-6 py-4" style={{ backgroundColor: stage.lightColor }}>
           <CardTitle className="flex items-center gap-2">
-            <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
             </svg>
             Automations
@@ -209,10 +209,10 @@ export default function StagePage() {
       </Card>
 
       {/* Email Templates */}
-      <Card className="mb-10 overflow-hidden">
-        <CardHeader className="border-b" style={{ backgroundColor: stage.lightColor }}>
+      <Card className="mb-10 overflow-hidden min-w-0">
+        <CardHeader className="border-b -mx-6 -mt-6 px-6 py-4" style={{ backgroundColor: stage.lightColor }}>
           <CardTitle className="flex items-center gap-2">
-            <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
             Email Templates
@@ -255,11 +255,11 @@ export default function StagePage() {
       </Card>
 
       {/* Checklist & Tips Side by Side */}
-      <div className="grid md:grid-cols-2 gap-6 mb-10">
-        <Card className="overflow-hidden">
-          <CardHeader className="border-b" style={{ backgroundColor: stage.lightColor }}>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+        <Card className="overflow-hidden min-w-0">
+          <CardHeader className="border-b -mx-6 -mt-6 px-6 py-4" style={{ backgroundColor: stage.lightColor }}>
             <CardTitle className="flex items-center gap-2">
-              <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Checklist
@@ -277,10 +277,10 @@ export default function StagePage() {
           </CardContent>
         </Card>
 
-        <Card className="overflow-hidden">
-          <CardHeader className="border-b" style={{ backgroundColor: stage.lightColor }}>
+        <Card className="overflow-hidden min-w-0">
+          <CardHeader className="border-b -mx-6 -mt-6 px-6 py-4" style={{ backgroundColor: stage.lightColor }}>
             <CardTitle className="flex items-center gap-2">
-              <svg className="w-5 h-5" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-5 h-5 shrink-0" style={{ color: stage.color }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
               </svg>
               Tips
